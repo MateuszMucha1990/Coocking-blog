@@ -1,0 +1,13 @@
+:root{
+--bs-font-sans-serif: 'Comme',sans-serif
+}
+
+.container-xxl{max-width: 1530px;}
+
+body{
+    background-image: url("/img/background.jpg");
+ 
+}
+a{
+    color: var(--bs-dark);
+}
