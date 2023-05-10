@@ -1,10 +1,11 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const {port} = require('./config')
+const {port} = require('./config');
+
 
 const app = express();
 
-
+require('./server/models/database')
 
 //middleware
 app.use(express.urlencoded({extended: true}));

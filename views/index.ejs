@@ -13,51 +13,30 @@
     </div>
 </div>
 
-
+<!-- Kategorie -->
 <div class="row row-cols-2 row-cols-lg-6 g-2g-lg-3 py-4">
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="/img/1.jpg" alt="foto-1" loading="lazy" >
-        </div>
-        <div class="pt-1">Amerykanskie jedzenie</div>
-    </a>
 
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="/img/2.jpg" alt="foto-2" loading="lazy" >
-        </div>
-        <div class="pt-1">Amerykanskie jedzenie</div>
-    </a>
-
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="/img/3.jpg" alt="foto-3" loading="lazy" >
-        </div>
-        <div class="pt-1">Amerykanskie jedzenie</div>
-    </a>
-
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="/img/4.jpg" alt="foto-4" loading="lazy" >
-        </div>
-        <div class="pt-1">Amerykanskie jedzenie</div>
-    </a>
-
-    <a href="#" class="col text-center category__link">
-        <div class="category__img shadow">
-            <img src="/img/5.jpg" alt="foto-5" loading="lazy" >
-        </div>
-        <div class="pt-1">Amerykanskie jedzenie</div>
-    </a>
-
+    <% if (categories != '') { %>
+        <% categories.forEach(function(category,index) { %>
+        <a href="/categories/<%- category.name %>" class="col text-center category__link">
+            <div class="category__img shadow">
+                <img src="/img/<%- category.image %>" alt="<%- category.name %>" loading="lazy" >
+            </div>
+            <div class="pt-1"><%- category.name %></div>
+        </a>
+        <% } )%>
+    <% } %>
+  
     <a href="categories" class="col text-center category__link">
         <div class="category__img shadow">
-            <img src="/img/5.jpg" alt="foto-5" loading="lazy" >
+            <img src="/img/6.jpg" alt="foto-5" loading="lazy" >
         </div>
         <div class="pt-1">Zobacz wszystkie</div>
     </a>
 </div>
 
+
+<!-- Nowe przepisy -->
 <section class="pb-4 pt-4">
     <div class="d-flex mb-2 align-items-center">
         <h2>Najnowsze przepisy</h2>
@@ -65,45 +44,76 @@
     </div>
 
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-2g-lg-3">
-        <a href="/recipe/#" class="col text-center category__link">
-            <div class="category__img category__img--large shadow">
-                <img src="/img/6.jpg" alt="foto-5" loading="lazy" >
-            </div>
-            <div class="pt-1">Potrawa pierwsza</div>
-        </a>
 
-        <a href="/recipe/#" class="col text-center category__link">
+        <% if (food != '') { %>
+            <% food.latest.forEach(function(recipe, index) {%>
+        <a href="/recipe/<%= recipe._id %>" class="col text-center category__link">
             <div class="category__img category__img--large shadow">
-                <img src="/img/6.jpg" alt="foto-5" loading="lazy" >
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" >
             </div>
-            <div class="pt-1">Potrawa pierwsza</div>
+            <div class="pt-1"><%= recipe.name %></div>
         </a>
-
-        <a href="/recipe/#" class="col text-center category__link">
-            <div class="category__img category__img--large shadow">
-                <img src="/img/6.jpg" alt="foto-5" loading="lazy" >
-            </div>
-            <div class="pt-1">Potrawa pierwsza</div>
-        </a>
-
-        <a href="/recipe/#" class="col text-center category__link">
-            <div class="category__img category__img--large shadow">
-                <img src="/img/6.jpg" alt="foto-5" loading="lazy" >
-            </div>
-            <div class="pt-1">Potrawa pierwsza</div>
-        </a>
-
-        <a href="/recipe/#" class="col text-center category__link">
-            <div class="category__img category__img--large shadow">
-                <img src="/img/6.jpg" alt="foto-5" loading="lazy" >
-            </div>
-            <div class="pt-1">Potrawa pierwsza</div>
-        </a>
+            <% })%>
+        <% } %>
+    
     </div>
 </section>
 
+<!--thai -->
+<section class="pb-4 pt-4">
+    <div class="d-flex mb-2 align-items-center">
+        <h2>Przepisy Tajskie</h2>
+        <a href="/categories/Thai" class="ms-auto">Zobacz wiecej</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-2g-lg-3">
+
+        <% if (typeof food.thai !== 'undefined' && food.thai.length>0) { %>
+            <% food.thai.forEach(function(recipe, index) {%>
+        <a href="/recipe/<%= recipe._id %>" class="col text-center category__link">
+            <div class="category__img category__img--large shadow">
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" >
+            </div>
+            <div class="pt-1"><%= recipe.name %></div>
+        </a>
+            <% })%>
+        <% } %>
+    
+    </div>
+</section>
+
+<!--american -->
+<section class="pb-4 pt-4">
+    <div class="d-flex mb-2 align-items-center">
+        <h2>Przepisy Amerykańskie</h2>
+        <a href="/categories/American" class="ms-auto">Zobacz wiecej</a>
+    </div>
+
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-2g-lg-3">
+
+        <% if ( food.american != '') { %>
+            <% food.american.forEach(function(recipe, index) {%>
+        <a href="/recipe/<%= recipe._id %>" class="col text-center category__link">
+            <div class="category__img category__img--large shadow">
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy" >
+            </div>
+            <div class="pt-1"><%= recipe.name %></div>
+        </a>
+            <% })%>
+        <% } %>
+    
+    </div>
+</section>
+
+
+
+
+
+
+
+
 <section class="px-4 py-5 my-5 text-center">
-    <img src="/img/2.jpg" class="d-block mx-auto mb-4 img-fluid" alt="publish" width="556" height="208" loading="lazy">
+    <img src="/img/6.jpg" class="d-block mx-auto mb-4 img-fluid" alt="publish" width="556" height="208" loading="lazy">
     <h1 class="display-5 fw-bold">Opublikuj swój przepis!</h1>
     <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
