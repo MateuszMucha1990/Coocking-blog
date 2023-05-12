@@ -1,0 +1,84 @@
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Dodaj Przepis</h1>
+    <div class="col-lg-6 mx-auto">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere exercitationem ducimus consequuntur nobis magni voluptatum qui sed vero quia assumenda, impedit voluptatibus. Odio omnis qui nostrum ut nesciunt, reiciendis adipisci!</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+
+ <% if (infoSubmitObj != '') { %>
+  <div class="col-8 alert alert-success" role="alert">
+  <%= infoSubmitObj %>
+  </div>
+  <% } %>
+
+
+ <% if (infoErrorObj != '') { %>
+  <div class="col-8 alert alert-danger" role="alert">
+  <%= infoErrorObj[0].message %>
+  </div>
+  <% } %>
+
+  
+
+    <div class="col-8">
+        <form action="/submit-recipe" enctype="multipart/form-data" method="POST">
+            <div class="row g-3">
+
+                <div class="col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                </div>
+                
+                <div class="col-12">
+                    <label for="email" class="form-label">Nazwa przepisu</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                </div>
+
+                <div class="col-12">
+                    <label for="description" class="form-label">Opis</label>
+                    <textarea name="description" class="form-control" id="description" cols="30" rows="4"></textarea>
+                </div>
+                
+                <div class="col-12">
+                    <label for="ingredients" class="form-label "> Składniki</label><br>
+                    <small >Przykład: Lody</small>
+                    <div class="ingredientsList">
+                        <div class="ingredientsDiv mb-1">
+                            <input type="text" name="ingredients" class="form-control" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button type="button" class="btn- btn-outline-primary" id="addIngredientsBtn">+ Składniki</button>
+                </div>
+
+                <div class="col-12">
+                    <label for="category"> Wybierz kategorie</label>  
+                    <select name="category" aria-label="Category" class="form-select form-control">
+                        <option selected>Wybierz kategorie</option>
+                        <option value="Thai">Tajskie</option>
+                        <option value="American">Amerykanskie</option>
+                        <option value="Chinese">Chińskie</option>
+                        <option value="Mexina">Meksykańskie</option>
+                        <option value="Indian">Indyjskie</option>
+                    </select>
+                </div>
+
+
+                <div class="col-12">
+                    <label for="image">Zdjęcię produktu</label>
+                    <input type="file" class="form-control" name="image" accept="image/*">
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Dodaj przepis</button>
+                </div>
+
+            </div>
+        </form>
+ 
+    </div>
+</div>
